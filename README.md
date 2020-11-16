@@ -1,7 +1,7 @@
 RUNNING FRONT-END GUI: 
 ``` cd gooey && npm start ```
 
-RUNNING BACKEND EXPRESS.JS NODE API:
-<code> cd gooey </code> <hr/>
-<code> cd api </code> </hr/>
-<code> npm start </code> </hr>
+RUNNING BACKEND EXPRESS.JS NODE API: <br/>
+<code> cd gooey </code> <br/>
+<code> cd api </code> <br/>
+<code> npm start </code> <br/>
