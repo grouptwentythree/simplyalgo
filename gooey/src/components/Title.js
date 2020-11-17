@@ -4,8 +4,15 @@ import image from './simplyimg.png';
 import testImage from './testimage.png';
 import trains from './trains.png'
 import cta from './cta.png'
+import { Link } from 'react-router-dom'
 
-export default function Title() {
+
+
+// <Link to='/validated' /> 
+// history.push('/about) <-- pushing onto webdoc 
+
+
+export default function Title({history}) {
     return (
 <div>
   <section class="coloured-section" id="title">
@@ -19,6 +26,7 @@ export default function Title() {
     <div class="row">
       <div class="col-lg-6">
         <h1 class="big-heading">Trading Reimagined: designed for your financial success </h1>
+
         <button type="button" class="btn btn-dark btn-lg btn-block getstarted-button">Get Started</button>
       </div>
       <div class="col-lg-6">
