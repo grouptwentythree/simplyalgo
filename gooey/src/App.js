@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import Title from './components/Title';
+
 
 function App() {
   return (
     <div className="App">
-      <h2> grouptwentythree - Alex, Kevin, David</h2>
+      <Title></Title>
     </div>
   );
 }
