@@ -1,0 +1,165 @@
+h1 {
+    font-size: 50px;
+    color: white;
+}
+
+body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Headings */
+
+.big-heading {
+    font-weight: 900; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.4rem;
+    line-height: 1.5; 
+}
+
+.section-heading {
+    font-size: 3rem;
+    line-height: 1.5    ;
+}
+
+/* Containers */
+
+.container-fluid {
+    padding: 7% 15%;
+}
+
+.container-features {
+    padding: 7% 15% 2%;
+}
+
+.container-cta {
+    padding: 2% 15%;
+}
+
+.container-footer {
+    padding: 3% 15%;
+}
+
+/* Sections */
+
+.coloured-section {
+    background-color: #ff4c68;
+    color: #fff;
+}
+
+.white-section {
+    background-color: white;
+}
+
+.green-section {
+    background-color: #014421;
+}
+
+.footer-section {
+    background-color: #d3d3d3;
+}
+
+/* Navigation Bar */
+
+.navbar {
+    padding : 4.5rem 0 0;
+}
+
+.navbar-brand {
+    font-family: "Ubuntu";
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-item {
+    padding: 0 18px;
+}
+
+.nav-link {
+    font-weight: 300; 
+    font-size: 1.2rem;
+    font-family: "Montserrat"
+}
+
+/* Title */
+
+#title .container-fluid {
+    padding: 3% 15%;
+    text-align: left;
+}
+
+.getstarted-button {
+    margin: 10% 3% 10% 0;
+    color: black;
+}
+
+.title-image {
+    width: 100%;
+    transform: rotate(0deg);
+    position: absolute;
+    right: 0%;
+     
+    padding-bottom: 20px;
+}
+
+/* Features */
+
+#features {
+    position: relative;
+}
+
+.feature-firstrow {
+    text-align: left;
+}
+
+.feature-row {
+    text-align: left;
+    padding-top: 100px;
+}
+
+.feature-item {
+    width: 50%;
+    display: inline-block;
+    /* padding: 0 10% 0; */
+}
+
+.feature-image {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-imageT {
+    
+}
+
+/* cta */
+
+.cta {
+    text-align: left;
+    color: #fbfaf5;
+}
+
+.feature-cta {
+    width: 50%;
+    display: inline-block;
+}
+
+
+/* faq */
+
+.faq-header {
+    color: black;
+}
+
+/* footer */
+
+
+
+

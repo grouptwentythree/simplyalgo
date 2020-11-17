@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+
+import Title from './components/Title';
 import React, {useState, useEffect} from 'react'
+
 
 function App() {
 
@@ -19,8 +22,9 @@ function App() {
 
   return (
     <div className="App">
-      <h2> grouptwentythree - Alex, Kevin, David</h2>
+      <Title></Title>
       <p>{apiResponse}</p>
+
     </div>
   );
 }
