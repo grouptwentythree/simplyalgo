@@ -46,7 +46,25 @@ connection.connect(function(err) {
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
+app.use('/algotrader', algotraderRouter)
 
+
+
+// adding an algotrader
+app.get('/addalgotrader', (req, res)=>{
+  let item = {
+    name: 'yungWallStreetBets', 
+    general_parameters: "some general paramters", 
+    performance_metrics: "performance metrics",
+    //date: ""
+  }
+  let sql = 'INSERT INTO Algotrader SET ?';
+  connection.query(sql, item, (err, result)=>{
+    if(err) throw err;
+    console.log(result);
+    res.send('Algotrader added! Thank you')
+  })
+})
 
 app.get("/", (req, res) => {
   connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
@@ -57,26 +75,12 @@ app.get("/", (req, res) => {
   });
 })
 
-// get an algotrader  
-app.get("/algotrader/:id", (req, res)=>{
-  connection.query('SELECT * FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
-    if(!err) {
-      res.send(rows);
-    } else {
-      console.log(err)
-    }
-  })
-})
-
-
-// delete an algotrader 
-app.delete("/algotrader/:id", (req, res)=>{
-  connection.query('DELETE FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
-    if(!err) {
-      res.send(rows);
-    } else {
-      console.log(err)
-    }
+app.get('/createalgotradertable', (req, res) => {
+  let sql = 'CREATE TABLE Algotrader(id int AUTO_INCREMENT, created_date DATETIME, fee FLOAT(8) DEFAULT 0, name VARCHAR(50), general_parameters TEXT, performance_metrics TEXT, PRIMARY KEY(id))';    
+  connection.query(sql, (err, result)=>{
+    if(err) throw err;
+    console.log(result);
+    res.send("Algotrader Table Created!");
   })
 })
 
