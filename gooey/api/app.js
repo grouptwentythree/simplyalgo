@@ -48,7 +48,6 @@ app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
 
 
-
 app.get("/", (req, res) => {
   connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
     if (error) throw error;
@@ -58,7 +57,7 @@ app.get("/", (req, res) => {
   });
 })
 
-// get an algotrader 
+// get an algotrader  
 app.get("/algotrader/:id", (req, res)=>{
   connection.query('SELECT * FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
     if(!err) {
