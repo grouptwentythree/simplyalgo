@@ -75,14 +75,50 @@ app.get("/", (req, res) => {
   });
 })
 
+<<<<<<< Updated upstream
 app.get('/createalgotradertable', (req, res) => {
   let sql = 'CREATE TABLE Algotrader(id int AUTO_INCREMENT, created_date DATETIME, fee FLOAT(8) DEFAULT 0, name VARCHAR(50), general_parameters TEXT, performance_metrics TEXT, PRIMARY KEY(id))';    
   connection.query(sql, (err, result)=>{
     if(err) throw err;
     console.log(result);
     res.send("Algotrader Table Created!");
+=======
+// get an algotrader  
+app.get("/algotrader/:id", (req, res)=>{
+  connection.query('SELECT * FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
   })
 })
+
+
+
+// delete an algotrader 
+app.delete("/algotrader/:id", (req, res)=>{
+  connection.query('DELETE FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+>>>>>>> Stashed changes
+  })
+})
+
+// SELECT aid
+app.get("/algotrader/:id", (req, res)=>{
+  connection.query('SELECT * FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+  })
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
