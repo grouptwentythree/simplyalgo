@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+var connection = require('../db')
 
 
-// get all algotraders  
-router.get("/algotrader", (req, res)=>{
+// return all algotraders
+router.get("/", (req, res)=>{
   connection.query('SELECT * FROM Algotrader', (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
@@ -14,25 +14,8 @@ router.get("/algotrader", (req, res)=>{
   })
 })
 
-// adding an algotrader
-router.get('/addalgotrader', (req, res)=>{
-  let item = {
-    name: 'yungWallStreetBets', 
-    general_paremeters: "some general paramters", 
-    performance_metrics: "performance metrics",
-    //date: ""
-  }
-  let sql = 'INSERT INTO Algotrader SET ?';
-  connection.query(sql, item, (err, result)=>{
-    if(err) throw err;
-    console.log(result);
-    res.send('Algotrader added! Thank you')
-  })
-})
-
-
-// get an algotrader  
-router.get("/algotrader/:id", (req, res)=>{
+// return specific algotrader
+router.get("/:id", (req, res)=>{
   connection.query('SELECT * FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
@@ -41,6 +24,24 @@ router.get("/algotrader/:id", (req, res)=>{
     }
   })
 })
+
+/* 
+let item = {
+  name: 'yungWallStreetBets', 
+  general_paremeters: "some general paramters", 
+  performance_metrics: "performance metrics",
+  //date: ""
+}
+let sql = 'INSERT INTO Algotrader SET ?';
+connection.query(sql, item, (err, result)=>{
+  if(err) throw err;
+  console.log(result);
+  res.send('Algotrader added! Thank you')
+})
+*/
+
+
+// get an algotrader  
 
 
 // delete an algotrader 
