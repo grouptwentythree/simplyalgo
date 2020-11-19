@@ -1,3 +1,4 @@
+const e = require('express');
 var express = require('express');
 var router = express.Router();
 var connection = require('../db')
@@ -8,11 +9,11 @@ router.get('/:email', function(req, res) {
     if (error) {
       console.log(error);
       res.send("uWu oopsie daisy something went wrong uwu")
-    }
-    if(results.length<1) {
+    } else if (!req.query.password) {
+      res.send("PLEASE ENTER A PASSWORD")
+    } else if(results.length<1) {
       res.send("USER NOT FOUND")
-    }
-    if(results[0].password === req.query.password) {
+    } else if(results[0].password === req.query.password) {
       res.send("VALID")
     } else {
       res.send("We shouldn't tell you this, but your password is incorrect.")
