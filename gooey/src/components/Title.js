@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Title.css';
 import image from './simplyimg.png';
 import testImage from './testimage.png';
@@ -7,14 +7,30 @@ import cta from './cta.png'
 import { Link } from 'react-router-dom'
 
 
-
 // <Link to='/validated' /> 
 // history.push('/about) <-- pushing onto webdoc 
 
 
 export default function Title({history}) {
-    return (
-<div>
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [apiResponse, setAPIResponse] = useState("")
+
+  const logIn = () => { 
+    // push to validated webbage or tell user that theyre' not defined
+    fetch("http://localhost:9000/client/"+email.trim()+"?"+"password="+password.trim())  
+        .then(res => res.text())
+        .then(res => setAPIResponse(res));
+  }
+  if(apiResponse == 'VALID') {
+    history.push("/validated")
+  }
+
+
+  return (
+  
+  <div>
   <section class="coloured-section" id="title">
     <div class="container-fluid">
 
@@ -26,8 +42,22 @@ export default function Title({history}) {
     <div class="row">
       <div class="col-lg-6">
         <h1 class="big-heading">Trading Reimagined: designed for your financial success </h1>
+        <hr/> 
+        <span>
+          Username:  
+        </span>
+        <input style={{color: "black"}} value={email} onChange={e => setEmail(e.target.value)}/>
+        <br/>
+        <br/>
 
-        <button type="button" class="btn btn-dark btn-lg btn-block getstarted-button">Get Started</button>
+        <span>
+          Password:
+        </span>
+        <input style={{color: "black"}} value={password} onChange={e => setPassword(e.target.value)}/>
+        <button type="button" onClick={()=>{logIn()}}class="btn btn-dark btn-lg btn-block getstarted-button">Log In</button>
+        <div>
+          {apiResponse}
+        </div>
       </div>
       <div class="col-lg-6">
         <img class="title-image" src={image} alt="iphone-mockup"></img>
