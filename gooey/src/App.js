@@ -10,17 +10,17 @@ function App() {
   const [apiResponse, setAPIResponse] = useState('')
 
   // frontend interaction (button press, enterinout) ==> backend ==> sql and returns something ==> render something to frontend 
-  // example call to backend 
+  /*
   function callAPI() {
-    fetch("http://localhost:9000/testAPI")  
+    fetch("http://localhost:9000/")  
         .then(res => res.text())
         .then(res => setAPIResponse(res));
   }
 
-  
   useEffect(() => {
     callAPI();
   });
+  */
 
   return (
       <BrowserRouter>

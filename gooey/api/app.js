@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var clientRouter = require('./routes/client');
 var testAPIRouter = require('./routes/testAPI');
 var algotraderRouter = require('./routes/algotrader')
 
 var cors = require('cors');
 var app = express();
 app.use(cors());
-var mysql = require('mysql');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,53 +24,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-var connection = mysql.createConnection({
-  user: 'grouptwentythree',
-  host: 'grouptwentythree.crac00bj6kog.us-west-2.rds.amazonaws.com',
-  database: 'grouptwentythree',
-  password: 'password',
-  port: 3306,
-})
-
-connection.connect(function(err) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-
-  console.log('Connected to database.');
-});
-
+var connection = require('./db')
 
 // app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/client', clientRouter);
 app.use('/testAPI', testAPIRouter);
 app.use('/algotrader', algotraderRouter)
 
 
-
 // adding an algotrader
-app.get('/addalgotrader', (req, res)=>{
-  let item = {
-    name: 'yungWallStreetBets', 
-    general_parameters: "some general paramters", 
-    performance_metrics: "performance metrics",
-    //date: ""
-  }
-  let sql = 'INSERT INTO Algotrader SET ?';
-  connection.query(sql, item, (err, result)=>{
-    if(err) throw err;
-    console.log(result);
-    res.send('Algotrader added! Thank you')
-  })
-})
 
-app.get("/", (req, res) => {
+app.get("/:id", (req, res) => {
   connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
     if (error) throw error;
     console.log('The solution is: ', results[0].solution);
-    res.send('pee pee poo poo')
+    res.send(req.params)
+    //res.send(req.params.id)
     // res.render({ title: 'Express' });
   });
 })
