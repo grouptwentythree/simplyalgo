@@ -1,13 +1,13 @@
-RUNNING FRONT-END GUI: 
+## How to run
+
+Running frontend React app / GUI: 
 ``` cd gooey && npm start ```
 
-RUNNING BACKEND EXPRESS.JS NODE API: <br/>
+Running backend Express.js: <br/>
 <code> cd gooey </code> <br/>
 <code> cd api </code> <br/>
 <code> npm start </code> <br/> 
 alternatively, you can run <code> nodemon api </code> instead of <code> npm start </code> to get hot refresh for the express backend
-<<<<<<< Updated upstream
-=======
 
 ## List of SQL Queries:
 - [x] SELECT to login/authenticate users
@@ -25,4 +25,3 @@ note: Users should only be able to make queries that make sense from a user's PO
 ## Useful Links:
 
 <ul> [Criteria](https://canvas.ubc.ca/courses/53546/files/11257052?module_item_id=2572710) /<ul>
->>>>>>> Stashed changes
