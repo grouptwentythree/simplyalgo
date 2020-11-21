@@ -24,9 +24,13 @@ export default function Title({history}) {
     fetch("http://localhost:9000/client/"+email.trim()+"?password="+password.trim())  
         .then(res => res.text())
         .then(res => setAPIResponse(res));
-  }
-  if(apiResponse == 'VALID') {
-    history.push("/validated")
+    }
+    if(apiResponse == 'VALID') {
+      //history.push("/validated")
+      history.push({
+        pathname: '/validated',
+        search: '?query='+email.trim()
+    })
   }
 
   
