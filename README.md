@@ -7,6 +7,12 @@ Running backend Express.js: <br/>
 <code> cd gooey </code> <br/>
 <code> cd api </code> <br/>
 <code> npm start </code> <br/> 
+
+Open another terminal<bt/>
+To open the GUI webpage: <br/>
+<code> cd gooey </code> <br/>
+<code> npm start </code> <br/> 
+
 alternatively, you can run <code> nodemon api </code> instead of <code> npm start </code> to get hot refresh for the express backend
 
 ## List of SQL Queries:
