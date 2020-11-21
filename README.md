@@ -17,7 +17,7 @@ alternatively, you can run <code> nodemon api </code> instead of <code> npm star
 - [ ] PROJECT query 
 - [ ] JOIN query (Use JOIN on use-build(aid, cid) with Algotrader(aid) and Client(cid) to get all interactions between clients and algotraders)
 - [ ] AGGREGATION query -(Use JOIN on Algotrader(aid) and Use-build(aid), then use SELECT aid SUM(fee) to determine total profits made)
-- [ ] NESTED AGGREGATING with GROUP BY (Use JOIN on Algotrader(aid) and Use-build(aid) tabel, then use SELECT aid SUM(fee) GROUP BY id to determine total profits made for each algotrader)
+- [ ] NESTED AGGREGATING with GROUP BY (Use JOIN on Algotrader(aid) and Use-build(aid) tabel, then use SELECT aid SUM(fee) GROUP BY aid to determine total profits made for each algotrader)
 - [ ] DIVISION (Use use-build tabel DEVIDE (SELECT aid FROM Algotrader) to get clients that have interacted with all algotraders)
 
 note: Users should only be able to make queries that make sense from a user's POV (filtering algotraders by fee or price..etc), users shouldn't be able to look up other users. 
