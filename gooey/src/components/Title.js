@@ -5,6 +5,7 @@ import testImage from './testimage.png';
 import trains from './trains.png'
 import cta from './cta.png'
 import { Link } from 'react-router-dom'
+import SignupModal from './SignupModal'
 
 
 // <Link to='/validated' /> 
@@ -16,10 +17,11 @@ export default function Title({history}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [apiResponse, setAPIResponse] = useState("")
+  const [modal, setModal] = useState(false) 
 
   const logIn = () => { 
     // push to validated webbage or tell user that theyre' not defined
-    fetch("http://localhost:9000/client/"+email.trim()+"?"+"password="+password.trim())  
+    fetch("http://localhost:9000/client/"+email.trim()+"?password="+password.trim())  
         .then(res => res.text())
         .then(res => setAPIResponse(res));
   }
@@ -27,7 +29,7 @@ export default function Title({history}) {
     history.push("/validated")
   }
 
-
+  
   return (
   
   <div>
@@ -57,6 +59,10 @@ export default function Title({history}) {
         <button type="button" onClick={()=>{logIn()}}class="btn btn-dark btn-lg btn-block getstarted-button">Log In</button>
         <div>
           {apiResponse}
+        </div>
+        <button type="button" onClick={()=>{setModal(true)}}class="btn btn-lg btn-block signup-button"> Sign Up</button>
+        <div>
+          {modal ? <SignupModal onClose={()=>{setModal(false)}} /> : null}
         </div>
       </div>
       <div class="col-lg-6">

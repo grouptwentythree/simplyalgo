@@ -1,11 +1,28 @@
-const e = require('express');
 var express = require('express');
 var router = express.Router();
 var connection = require('../db')
 
+
+router.get("/add/:email", (req, res) => {
+  let item = {
+    cName: req.params.email, 
+    password: req.query.password
+  }
+  let sql = 'INSERT INTO Client SET ?';
+  connection.query(sql, item, (err, result)=>{
+    if(err) {
+      res.send("AN ERROR HAS OCCURED")
+      throw err;
+    }
+    console.log(result);
+    res.send('WELCOME TO SIMPLYALGO!')
+})
+})
+
+
 /* GET users listing. */
-router.get('/:email', function(req, res) {
-  connection.query('SELECT * FROM Client WHERE name=?', [req.params.email], (error, results, fields)=> {
+router.get('/:email', (req, res) => {
+  connection.query('SELECT * FROM Client WHERE cName=?', [req.params.email], (error, results, fields)=> {
     if (error) {
       console.log(error);
       res.send("uWu oopsie daisy something went wrong uwu")
@@ -21,10 +38,7 @@ router.get('/:email', function(req, res) {
   })
 });
 
-  // lets query the db 
-  // res.send(req.query.password)
-  // and send a validated request! 
-  //res.send(req.params);
+
 
 
 module.exports = router;
