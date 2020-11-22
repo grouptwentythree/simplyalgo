@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../db')
 
-
 router.get("/add/:email", (req, res) => {
   let item = {
     cName: req.params.email, 

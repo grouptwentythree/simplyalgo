@@ -102,6 +102,7 @@ export default function Card(props) {
             <Content>
                 <h3> {props.algo.name} </h3>
                 <p> {props.algo.general_parameters} </p>
+                <i> <small> Annual Fee: {props.algo.fee}% </small> </i>
             </Content>
             <div>
     {showPopup ? <CardModal onRequestClose={()=>setShowPopup(false)}>  </CardModal> : null}

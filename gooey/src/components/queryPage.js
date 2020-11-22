@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Card from '../components/Card'
+import {Dropdown, DropdownButton} from 'react-bootstrap'
 
 const SideBar = styled.div`
     display: flex,
@@ -60,6 +61,7 @@ export default function QueryPage(){
         //lets you view and browse an algotrader 
         const [api, setResponse] = useState([])
 
+
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('query');
     
@@ -79,7 +81,7 @@ export default function QueryPage(){
         return(
             <div style={{padding: '30px', display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
                 {api.map(algo => (
-                     <Card canAccess={true} algo={algo} > {algo.id} </Card>   
+                    <Card canAccess={true} algo={algo} > {algo.id} </Card>   
             ))} 
             </div>
         )
@@ -93,18 +95,33 @@ export default function QueryPage(){
          }, [])
  
          const fetchAllAlgos = () =>{
+             console.log('fecthing all')
              fetch("http://localhost:9000/algotrader/all")  
              .then(res => res.text()) // res.text()
              .then(res => { setResponse(JSON.parse(res))
              })
          }
+
+         const fetchDivisible = () =>{
+            console.log('fetching divide')
+            fetch("http://localhost:9000/algotrader/divide")  
+            .then(res => res.text()) // res.text()
+            .then(res => { setResponse(JSON.parse(res))
+            })
+        }
  
          return(
-             <div style={{padding: '30px', display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
-                 {api.map(algo => (
-                      <Card canAccess={false} key={algo.id} algo={algo} />   
-             ))} 
-             </div>
+             <>
+                <div style={{padding: '30px'}}>
+                 <button onClick={()=>fetchDivisible()}> Find algotrader system integrated with all brokerages </button>
+                 <button onClick={()=>fetchAllAlgos()}> Reset </button>
+                </div>
+                <div style={{padding: '30px', display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+                    {api.map(algo => (
+                        <Card canAccess={false} key={algo.id} algo={algo} />   
+                ))} 
+                </div>
+             </>
          )
     }
 

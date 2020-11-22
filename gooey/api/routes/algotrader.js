@@ -26,6 +26,18 @@ router.get("/all", (req, res)=>{
 })
 
 
+router.get("/divide", (req, res)=>{
+  connection.query('SELECT * FROM Algotrader', (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+})
+})
+
+
+
 // return specific algotrader
 router.get("/performance/:id", (req, res)=>{
   connection.query(
