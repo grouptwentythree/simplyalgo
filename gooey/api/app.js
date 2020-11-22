@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var clientRouter = require('./routes/client');
 var testAPIRouter = require('./routes/testAPI');
 var algotraderRouter = require('./routes/algotrader')
+var portfolioRouter = require('./routes/portfolio')
 
 var cors = require('cors');
 var app = express();
@@ -30,19 +31,7 @@ var connection = require('./db')
 app.use('/client', clientRouter);
 app.use('/testAPI', testAPIRouter);
 app.use('/algotrader', algotraderRouter)
-
-
-// adding an algotrader
-
-app.get("/:id", (req, res) => {
-  connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
-    res.send(req.params)
-    //res.send(req.params.id)
-    // res.render({ title: 'Express' });
-  });
-})
+app.use('/portfolio', portfolioRouter)
 
 app.get('/createalgotradertable', (req, res) => {
   let sql = 'CREATE TABLE Algotrader(id int AUTO_INCREMENT, created_date DATETIME, fee FLOAT(8) DEFAULT 0, name VARCHAR(50), general_parameters TEXT, performance_metrics TEXT, PRIMARY KEY(id))';    

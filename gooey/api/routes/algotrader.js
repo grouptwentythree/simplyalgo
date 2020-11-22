@@ -33,7 +33,7 @@ router.get("/divide", (req, res)=>{
     } else {
       console.log(err)
     }
-})
+  })
 })
 
 
@@ -83,17 +83,6 @@ router.get("/insert", (req, res) => {
   })
 })
 
-
-// delete an algotrader 
-router.delete("/algotrader/:id", (req, res)=>{
-  connection.query('DELETE FROM Algotrader WHERE aid = ?', [req.params.id], (err, rows, fields)=>{
-    if(!err) {
-      res.send(rows);
-    } else {
-      console.log(err)
-    }
-  })
-})
 
 module.exports = router;
 

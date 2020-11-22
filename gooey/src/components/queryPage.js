@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Card from '../components/Card'
-import {Dropdown, DropdownButton} from 'react-bootstrap'
+import { PieChart } from 'react-minimal-pie-chart';
 
 const SideBar = styled.div`
     display: flex,
@@ -49,10 +49,34 @@ export default function QueryPage(){
     )
 
     function Dashboard() {
-        return(
-            <h2>
-               this page should show the user portfolio, which is the combination of all algotraders connected
-            </h2>
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('query');
+
+        const [api, setResponse] = useState([])
+   
+        useEffect(()=>{
+            fetchPortfolio()
+         }, []);
+ 
+        const fetchPortfolio = () =>{
+            fetch("http://localhost:9000/portfolio?user="+myParam)  
+             .then(res => res.text()) // res.text()
+             .then(res=> JSON.parse(res))
+             .then(res => res.map((element, index) => ({ ...element, color: randomColor[index]})))
+             .then(res=> setResponse(res))
+        }
+
+        const randomColor=["#555b6e", "#89b0ae", "#bee3db", "#faf9f9", "#ffd6ba", "#ecf8f8", '#eee4e1', '#e7d8c9', '#e6beae', '#b2967d']
+      
+        return(       
+            <div style={{margin: '40px', fontSize:'5px', lineHeight:'normal', fontStretch:'normal', transitionDuration: '3s' }}>
+                <PieChart animate={true}
+                        lineWidth={60}
+                        labelPosition={70}
+                        animationDuration={2500+Math.random()} 
+                        label={({ dataEntry }) => `${dataEntry.title}: ${dataEntry.value}` }
+                        data={api} />
+            </div>
         )
     }
 
