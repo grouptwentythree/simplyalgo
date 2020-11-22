@@ -61,7 +61,7 @@ h1, h2, h3, h4 {
 }
 
 .footer-section {
-    background-color: #d3d3d3;
+    background-color: white;
 }
 
 /* Navigation Bar */
@@ -112,6 +112,14 @@ h1, h2, h3, h4 {
     right: 0%;
      
     padding-bottom: 20px;
+}
+
+.login {
+    padding-right: 0.7rem;
+}
+
+.login-password {
+    padding-right: 1.2rem;
 }
 
 /* Features */

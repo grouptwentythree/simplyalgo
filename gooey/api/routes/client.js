@@ -18,6 +18,21 @@ router.get("/add/:email", (req, res) => {
 })
 })
 
+router.get("/delete/:email", (req, res) => {
+  let item = {
+    cName: req.params.email
+  }
+  let sql = 'DELETE FROM Client WHERE ?';
+  connection.query(sql, item, (err, result)=>{
+    if(err) {
+      res.send("AN ERROR HAS OCCURED")
+      throw err;
+    }
+    console.log(result);
+    res.send('ACCOUNT DELETED')
+  })
+})
+
 
 /* GET users listing. */
 router.get('/:email', (req, res) => {

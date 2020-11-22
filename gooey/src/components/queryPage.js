@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useHistory } from "react-router-dom"
 import styled from 'styled-components'
 import Card from '../components/Card'
 import { PieChart } from 'react-minimal-pie-chart';
@@ -95,6 +96,7 @@ export default function QueryPage(){
 
         const fetchyourAlgos = () =>{
             fetch("http://localhost:9000/algotrader?user="+myParam)  
+            .then(console.log(myParam))
             .then(res => res.text()) // res.text()
             .then(res => { 
                 console.log(res)
@@ -119,7 +121,7 @@ export default function QueryPage(){
          }, [])
  
          const fetchAllAlgos = () =>{
-             console.log('fecthing all')
+             console.log('fetching all')
              fetch("http://localhost:9000/algotrader/all")  
              .then(res => res.text()) // res.text()
              .then(res => { setResponse(JSON.parse(res))
@@ -151,8 +153,23 @@ export default function QueryPage(){
 
 
     function Settings() {
+        const [api, setResponse] = useState([])
+        let history = useHistory();
+
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('query');
+
+        const deleteAcc = () =>{
+            console.log("deleting current account")
+            fetch("http://localhost:9000/client/delete/"+myParam)
+            history.push('/');
+        }
+
         return(
-            <div>Delete Account</div>
+            <div style={{padding: '30px'}}>
+                <button onClick={()=>deleteAcc()}>Delete Account</button>
+            </div>
         )
     }
 
