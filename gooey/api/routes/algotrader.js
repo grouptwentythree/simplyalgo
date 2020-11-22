@@ -27,7 +27,7 @@ router.get("/all", (req, res)=>{
 
 
 router.get("/divide", (req, res)=>{
-  connection.query('SELECT * FROM Algotrader', (err, rows, fields)=>{
+  connection.query('SELECT * FROM Algotrader a WHERE NOT EXISTS ((SELECT b.id FROM Brokerage b WHERE NOT EXISTS (SELECT ab.aid FROM Authorizes ab WHERE ab.aid = b.id AND ab.bid = a.id)))', (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
     } else {

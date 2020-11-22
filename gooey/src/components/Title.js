@@ -49,14 +49,14 @@ export default function Title({history}) {
       <div class="col-lg-6">
         <h1 class="big-heading">Trading Reimagined: designed for your financial success </h1>
         <hr/> 
-        <span>
+        <span class="login">
           Username:  
         </span>
         <input style={{color: "black"}} value={email} onChange={e => setEmail(e.target.value)}/>
         <br/>
         <br/>
 
-        <span>
+        <span class="login-password">
           Password:
         </span>
         <input style={{color: "black"}} value={password} onChange={e => setPassword(e.target.value)}/>
@@ -78,7 +78,7 @@ export default function Title({history}) {
   </section>
 
 
-  <section class="white-section" id="features">
+  {/* <section class="white-section" id="features">
     <div class="container-features">
 
       <div class="feature-firstrow">
@@ -128,17 +128,7 @@ export default function Title({history}) {
         </div>
      </div>
    </div>
-  </section>
-
-  <section class="white-section">
-     <div class="container-fluid">
-     <h2 class="faq-header">FAQs</h2>
-     <div>
-       
-     </div>
-
-     </div>
-   </section>
+  </section> */}
 
    <section class="footer-section">
      <div class="container-footer">
