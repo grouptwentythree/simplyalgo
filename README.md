@@ -21,8 +21,8 @@ alternatively, you can run <code> nodemon api </code> instead of <code> npm star
 - [ ] INSERT, DELETE, UPDATE (Use INSERT and DELETEto add, remove clients. Use UPDATE to change attributes of a client)
 - [ ] user-specified SELECT query (Use SELECT(name) on Brokerage to get all brokerage's name in the tabel)
 - [ ] PROJECT query 
-- [ ] JOIN query (Use JOIN on use-build(aid, cid) with Algotrader(aid) and Client(cid) to get all interactions between clients and algotraders)
-- [ ] AGGREGATION query -(Use JOIN on Algotrader(aid) and Use-build(aid), then use SELECT id SUM(fee) to determine total profits made)
+- [ ] JOIN query (Use JOIN on use-build(aid, cName) with Algotrader(aid) and Client(cName) to get all interactions between clients and algotraders)
+- [ ] AGGREGATION query -(Use JOIN on Algotrader(aid) client(cName) and Use-build(aid), then use SELECT C.cName SUM(fee) to determine total profits made by each client)
 - [ ] NESTED AGGREGATING with GROUP BY (Use JOIN on Algotrader(aid) and Use-build(aid) tabel, then use SELECT id SUM(fee) GROUP BY id to determine total profits made for each algotrader)
 - [ ] DIVISION (Use use-build tabel DEVIDE (SELECT aid FROM Algotrader) to get clients that have interacted with all algotraders)
 
