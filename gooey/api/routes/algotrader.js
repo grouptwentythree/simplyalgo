@@ -35,13 +35,49 @@ router.get("/divide", (req, res)=>{
     }
   })
 })
+//selection
+//Algotrader that has a fee<=1
+router.get("/popular_algotrader", (req, res)=>{
+  connection.query('SELECT * FROM grouptwentythree.Algotrader A WHERE A.fee<=1', (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+  })
+})
 
+//aggregation+group by
+//algotrader clints have used
+//SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name ;
+router.get("/popular_algotrader", (req, res)=>{
+  connection.query('SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name', (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+  })
+})
+//aggregation+having
+//popular algotrader (algotrader clints have used more than 1)
+//SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name HAVING COUNT()>1;
+router.get("/popular_algotrader", (req, res)=>{
+  connection.query('SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name HAVING COUNT()>1', (err, rows, fields)=>{
+    if(!err) {
+      res.send(rows);
+    } else {
+      console.log(err)
+    }
+  })
+})
 
-
+//join
+//Stock trading history of Algotraders
 // return specific algotrader
 router.get("/performance/:id", (req, res)=>{
   connection.query(
-    'SELECT quantity, datetime, B.name, ticker, O.order_id FROM grouptwentythree.Algotrader A, grouptwentythree.Authorizes AZ, grouptwentythree.Order O, grouptwentythree.Brokerage B, grouptwentythree.Submits S WHERE A.id = ? AND A.id = AZ.aid AND AZ.bid = B.id AND B.id = S.bid AND S.order_id = O.order_id',
+    'SELECT A.name,quantity, datetime, B.name, ticker, O.order_id FROM grouptwentythree.Algotrader A, grouptwentythree.Authorizes AZ, grouptwentythree.Order O, grouptwentythree.Brokerage B, grouptwentythree.Submits S WHERE A.id = ? AND A.id = AZ.aid AND AZ.bid = B.id AND B.id = S.bid AND S.order_id = O.order_id',
      [req.params.id], (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
