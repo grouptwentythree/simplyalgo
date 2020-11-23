@@ -154,6 +154,8 @@ export default function QueryPage(){
 
     function Settings() {
         const [api, setResponse] = useState([])
+        const [password, setPassword] = useState("")
+        const [apiResponse, setAPIResponse] = useState("")
         let history = useHistory();
 
         
@@ -166,10 +168,25 @@ export default function QueryPage(){
             history.push('/');
         }
 
+        const changePass= () =>{
+            console.log("changing user account")
+            fetch("http://localhost:9000/client/update/"+myParam+"?password="+password.trim())
+            .then(res => res.text())    
+            .then(res => setAPIResponse(res));
+        }
+
         return(
             <div style={{padding: '30px'}}>
+                <input style={{color: "black", display: "block", margin: "0 2rem 1rem"}} value={password} onChange={e => setPassword(e.target.value)}/>
+                <button style={{display: "block", margin: "0 0 0 4rem"}} onClick={()=>changePass()}>Change Password</button>
+                <div style={{margin:"0 0 2rem 0"}}>
+                {apiResponse}
+                </div>
                 <button onClick={()=>deleteAcc()}>Delete Account</button>
+                
+                
             </div>
+            
         )
     }
 
