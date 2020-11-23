@@ -33,6 +33,17 @@ router.get("/delete/:email", (req, res) => {
   })
 })
 
+router.get("/update/:email", (req, res) => {
+  let item = [req.query.password, req.params.email];
+  let sql = 'UPDATE Client SET password=? WHERE cName=?'
+  connection.query(sql, item, (error, results, fields)=> {
+    if (error) {
+      console.log(error);
+      res.send("sorry something went wrong, try again maybe?")
+    }
+    res.send('password changed!')
+  })
+})
 
 /* GET users listing. */
 router.get('/:email', (req, res) => {
