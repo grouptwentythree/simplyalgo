@@ -51,7 +51,7 @@ router.get("/popular_algotrader", (req, res)=>{
 //algotrader clints have used
 //SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name ;
 router.get("/popular_algotrader", (req, res)=>{
-  connection.query('SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name', (err, rows, fields)=>{
+  connection.query('SELECT * FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name HAVING COUNT() > 1', (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
     } else {
@@ -62,8 +62,8 @@ router.get("/popular_algotrader", (req, res)=>{
 //aggregation+having
 //popular algotrader (algotrader clints have used more than 1)
 //SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name HAVING COUNT()>1;
-router.get("/popular_algotrader", (req, res)=>{
-  connection.query('SELECT A.name, COUNT() FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.name HAVING COUNT()>1', (err, rows, fields)=>{
+router.get("/popular", (req, res)=>{
+  connection.query('SELECT * FROM grouptwentythree.Algotrader A, grouptwentythree.Build B WHERE A.id = B.id GROUP BY A.id HAVING COUNT(*)>1', (err, rows, fields)=>{
     if(!err) {
       res.send(rows);
     } else {

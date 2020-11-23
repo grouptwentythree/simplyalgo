@@ -128,6 +128,13 @@ export default function QueryPage(){
              })
          }
 
+         const popularAlgos = () =>{
+            fetch("http://localhost:9000/algotrader/popular")  
+            .then(res => res.text()) // res.text()
+            .then(res => { setResponse(JSON.parse(res))
+            })
+        }
+
          const fetchDivisible = () =>{
             console.log('fetching divide')
             fetch("http://localhost:9000/algotrader/divide")  
@@ -140,6 +147,7 @@ export default function QueryPage(){
              <>
                 <div style={{padding: '30px'}}>
                  <button onClick={()=>fetchDivisible()}> Find algotrader system integrated with all brokerages </button>
+                 <button onClick={()=>popularAlgos()}> Find popular algotraders </button>
                  <button onClick={()=>fetchAllAlgos()}> Reset </button>
                 </div>
                 <div style={{padding: '30px', display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
